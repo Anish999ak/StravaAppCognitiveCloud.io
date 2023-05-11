@@ -1,0 +1,35 @@
+// import React, { useState } from 'react';
+
+// const config = {
+//     clientId: '106811',
+//     clientSecret: '5b93f93b9536407cf88b71ccf4c9bedfaf51f710',
+//     redirectUrl: 'http://www.strava.com/oauth/authorize?client_id=106811&response_type=code&redirect_uri=http://localhost:3000&approval_prompt=force&scope=read',
+//     authorizationEndpoint: 'https://www.strava.com/oauth/mobile/authorize',
+//     tokenEndpoint: 'https://www.strava.com/oauth/token',
+//     scopes: ['activity:read_all'],
+//   };
+  
+
+// const LoginScreen = () => {
+//   const [accessToken, setAccessToken] = useState('');
+//   const handleLogin = async () => {
+//     const authUrl = `${config.authorizationEndpoint}?client_id=${config.clientId}&redirect_uri=${config.redirectUrl}&response_type=code&scope=${config.scopes.join('+')}`;
+//     const response = await fetch(authUrl);
+//     const authCode = new URLSearchParams(response.url.split('?')[1]).get('code');
+//     console.log(authCode)
+//     const tokenUrl = `${config.tokenEndpoint}?client_id=${config.clientId}&client_secret=${config.clientSecret}&code=${authCode}&grant_type=authorization_code`;
+//     const tokenResponse = await fetch(tokenUrl, { method: 'POST' });
+//     const tokenData = await tokenResponse.json();
+//     setAccessToken(tokenData.access_token);
+//   };
+
+//   return (
+//     <div>
+//       <h1>Login with Strava</h1>
+//       <button onClick={handleLogin}>Login with Strava</button>
+//       {accessToken && <p>Access Token: {accessToken}</p>}
+//     </div>
+//   );
+// };
+
+// export default LoginScreen;

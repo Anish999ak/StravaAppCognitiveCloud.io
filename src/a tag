@@ -1,0 +1,61 @@
+<a href={`http://www.strava.com/oauth/authorize?client_id=106811&response_type=code&redirect_uri=http://localhost:3000&approval_prompt=force&scope=read`}>Login in</a>
+//@ts-nocheck
+import React, { useState } from 'react';
+import {useAuth} from 'react-oauth2-code-pkce'
+
+const config = {
+  clientId: '106811',
+  clientSecret: '<client_secret>',
+  redirectUrl: 'http://www.strava.com/oauth/authorize?client_id=106811&response_type=code&redirect_uri=http://localhost:3000&approval_prompt=force&scope=read',
+  serviceConfiguration: {
+    authorizationEndpoint: 'https://www.strava.com/oauth/mobile/authorize',
+    tokenEndpoint:
+      'https://www.strava.com/oauth/token?client_id=106811&client_secret=5b93f93b9536407cf88b71ccf4c9bedfaf51f710',
+  },
+  scopes: ['activity:read_all'],
+};
+
+
+const handleTokenRequest = async () => {
+    try {
+      const response = await fetch(
+        `https://www.strava.com/oauth/token?client_id=${106811}&client_secret=${CLIENT_SECRET}&code=${authCode}&grant_type=authorization_code`,
+        {
+          method: "POST",
+        }
+      );
+      const data = await response.json();
+      setAccessToken(data.access_token);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+
+
+const LoginScreen = () => {
+
+  return (
+    <div>
+      <h1>Login with Strava</h1>
+      <a href={`http://www.strava.com/oauth/authorize?client_id=106811&response_type=code&redirect_uri=http://localhost:3000&approval_prompt=force&scope=read`}>Login</a>
+    </div>
+  );
+};
+
+export default LoginScreen;
+
+
+
+https://www.strava.com/oauth/token?client_id='106811'&client_secret='5b93f93b9536407cf88b71ccf4c9bedfaf51f710'&code='f4f0f9365120ee3970c7b43260c7372f9386bbc5'&grant_type=authorization_code
+
+
+const getActivities = (accessToken:any) =>{
+  if(accessToken !== null){
+    axios.get(`https://www.strava.com/api/v3/athlete/activities?access_token=${accessToken}`)
+    .then((response)=> console.log(response))
+    .catch((error)=>{
+      console.log(error)
+    })
+  } 
+}
